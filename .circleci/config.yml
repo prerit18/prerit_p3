@@ -279,8 +279,6 @@ jobs:
           name: Run migrations
           working_directory: ./backend
           command:  |
-                export TYPEORM_HOST=ec2-3-7-68-126.ap-south-1.compute.amazonaws.com
-                echo $TYPEORM_HOST
                 npm run migrations > migration_status.txt
                 cat migration_status.txt
       - run:
