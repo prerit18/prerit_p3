@@ -232,7 +232,7 @@ jobs:
     steps:
       -  checkout
       - add_ssh_keys:
-          fingerprints: ["c7:6f:80:5f:2d:2d:78:73:58:8a:3f:14:09:ec:ee:1a"]
+          fingerprints: ["ea:6b:92:36:e9:70:eb:9a:9b:0c:18:40:74:58:66:11"]
       - attach_workspace:
           at: .
       - run:
