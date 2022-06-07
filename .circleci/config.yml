@@ -183,6 +183,7 @@ jobs:
           command:   |
                 npm audit fix --audit-level=critical
                 npm audit --audit-level=critical
+                npm audit fix
 
   deploy-infrastructure:
     docker:
