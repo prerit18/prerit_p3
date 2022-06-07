@@ -422,7 +422,7 @@ jobs:
       #- run:
        #   name: Frontend smoke test.
         #  command: |
-         #   if curl -s http://udapeople-${CIRCLE_WORKFLOW_ID:0:7}.s3-website.us-east-1.amazonaws.com/#/employees | grep "Welcome"
+         ##   if curl -s http://udapeople-${CIRCLE_WORKFLOW_ID:0:7}.s3-website.us-east-1.amazonaws.com/#/employees | grep "Welcome"
           #  then
            # return 0
             #else
