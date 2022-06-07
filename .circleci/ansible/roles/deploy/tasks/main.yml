@@ -1,0 +1,81 @@
+---
+  # - name: "copy distribution zip"
+  #   become: true
+  #   copy:
+  #     src: dist.zip
+  #     dest: dist.zip
+  
+  - name: Extract artifact.tar.gz file to EC2 isntance
+    unarchive:
+      src: ../../backend/artefacts.tar.gz
+      dest: /home/ubuntu
+      owner: ubuntu
+      remote_src: no
+
+  # - name: "Install zip"
+  #   become: yes
+  #   apt:
+  #     update_cache: yes
+  #     name: zip
+  #     state: present
+  
+  # - name: unarchive the dist.zip
+  #   ansible.builtin.unarchive:
+  #     src:  dist.zip
+  #     dest: /home/ubuntu/
+  #     owner: ubuntu 
+  #     remote_src: no
+  
+  - name: "install dependencies Nodejs NPM"
+    become: yes
+    apt:
+      name: ["nodejs", "npm"]
+      state: present
+      update_cache: yes    
+
+  # ADDED NEW
+  - name: Install netstart tool - to check currently open ports
+    become: yes
+    apt:
+      name: ["net-tools"]
+      state: latest
+      update_cache: yes
+      
+  - name: "update apt packages."
+    become: yes
+    become_method: sudo
+    apt:
+      update_cache: yes
+ 
+  - name: "pm2 install global using NPM"
+    become: yes
+    shell: |
+      cd /home/ubuntu/
+      npm install pm2 -g
+
+# lins removed
+      # export ENVIRONMENT=production
+      # export NODE_ENV=production
+      # export TYPEORM_CONNECTION=postgres
+      # export TYPEORM_ENTITIES=./modules/domain/**/*.entity.js
+      # export TYPEORM_HOST=ec2-13-233-68-53.ap-south-1.compute.amazonaws.com
+      # export TYPEORM_PORT=5432
+      # export TYPEORM_USERNAME=glee
+      # export TYPEORM_PASSWORD=glee
+      # export TYPEORM_DATABASE=glee
+      # cd dist
+      # pm2 start main.js
+
+  - name: "Start Backend App"
+    become: yes
+    become_user: ubuntu  
+    shell: |
+        cd /home/ubuntu/dist
+        pm2 list
+        pm2 stop default
+        pm2 start main.js
+        pm2 status all
+        netstat -tulpn
+        curl localhost:3030/api/status
+        netstat -tulpn
+    ignore_errors: true
