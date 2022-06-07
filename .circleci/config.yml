@@ -275,25 +275,25 @@ jobs:
           working_directory: ./backend
           command:  |
                 npm install
-      - run:
-          name: Run migrations
-          working_directory: ./backend
-          command:  |
-                npm run migrations > migration_status.txt
-                cat migration_status.txt
-      - run:
-          name: Send migration results to memstash
-          working_directory: ./backend
-          command: |
-            if grep -q "has been executed successfully" migration_status.txt
-            then
-              echo "DB migration was successful, will update memstash..."
-              curl  https://kvdb.io/NqK6G9tq8Jq7kMdMXacYZd/DB_MIGRATION_${CIRCLE_WORKFLOW_ID:0:7} -d "success" -k
-            else
-              echo "DB migration failed, please verify setup! Probably the database already exists. Verify setup!"
-              curl  https://kvdb.io/NqK6G9tq8Jq7kMdMXacYZd/DB_MIGRATION_${CIRCLE_WORKFLOW_ID:0:7} -d "failure" -k
-            fi
-            echo "WorkflowID=${CIRCLE_WORKFLOW_ID:0:7}"
+      # - run:
+        #  name: Run migrations
+        #  working_directory: ./backend
+        #  command:  |
+         #       npm run migrations > migration_status.txt
+          #      cat migration_status.txt
+      #- run:
+       #   name: Send migration results to memstash
+        #  working_directory: ./backend
+         # command: |
+          #  if grep -q "has been executed successfully" migration_status.txt
+           # then
+            #  echo "DB migration was successful, will update memstash..."
+             # curl  https://kvdb.io/NqK6G9tq8Jq7kMdMXacYZd/DB_MIGRATION_${CIRCLE_WORKFLOW_ID:0:7} -d "success" -k
+            #else
+             # echo "DB migration failed, please verify setup! Probably the database already exists. Verify setup!"
+              #curl  https://kvdb.io/NqK6G9tq8Jq7kMdMXacYZd/DB_MIGRATION_${CIRCLE_WORKFLOW_ID:0:7} -d "failure" -k
+            #fi
+            #echo "WorkflowID=${CIRCLE_WORKFLOW_ID:0:7}"
       # - destroy-environment:
       #     id: ${CIRCLE_WORKFLOW_ID:0:7}
       #     when: on_fail
@@ -342,7 +342,7 @@ jobs:
     steps:
       - checkout
       - add_ssh_keys:
-          fingerprints: ["c7:6f:80:5f:2d:2d:78:73:58:8a:3f:14:09:ec:ee:1a"]
+          fingerprints: ["ea:6b:92:36:e9:70:eb:9a:9b:0c:18:40:74:58:66:11"]
       - attach_workspace:
           at: .
       - run:
