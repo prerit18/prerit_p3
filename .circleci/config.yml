@@ -181,9 +181,8 @@ jobs:
           name: Check Backend against security vulnerabilities
           working_directory: ./backend
           command:   |
-                npm audit fix --audit-level=critical
+                npm audit fix --audit-level=critical --force
                 npm audit --audit-level=critical
-                npm audit fix
 
   deploy-infrastructure:
     docker:
