@@ -71,7 +71,7 @@
       # export TYPEORM_PASSWORD=glee
       # export TYPEORM_DATABASE=glee
       # cd dist
-      # pm2 start main.js
+      ## pm2 start main.js
 
   - name: "Start Backend App"
     become: yes
