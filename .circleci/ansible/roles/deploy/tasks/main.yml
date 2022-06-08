@@ -51,7 +51,7 @@
   - name: "pm2 install global using NPM"
     become: yes
     shell: |
-      cd /home/ubuntu/
+      cd /home/ec2-user/
       npm install pm2 -g
 
 # lins removed
