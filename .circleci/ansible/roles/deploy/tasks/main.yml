@@ -9,7 +9,7 @@
     unarchive:
       src: ../../backend/artefacts.tar.gz
       dest: /home/ubuntu
-      owner: ubuntu
+      owner: ec2-user
       remote_src: no
 
   # - name: "Install zip"
@@ -26,12 +26,6 @@
   #     owner: ubuntu 
   #     remote_src: no
 
-  - name: Extract artifact.tar.gz file to EC2 isntance
-    unarchive:
-      src: ../../backend/artefacts.tar.gz
-      dest: /home/ubuntu
-      owner: ec2-user
-      remote_src: no
   
   - name: "install dependencies Nodejs NPM"
     become: yes
