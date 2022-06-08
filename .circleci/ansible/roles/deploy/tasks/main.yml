@@ -8,7 +8,7 @@
   - name: Extract artifact.tar.gz file to EC2 isntance
     unarchive:
       src: ../../backend/artefacts.tar.gz
-      dest: /home/ubuntu
+      dest: /home/ec2-user
       owner: ec2-user
       remote_src: no
 
@@ -71,7 +71,7 @@
     become: yes
     become_user: ec2-user  
     shell: |
-        cd /home/ubuntu/dist
+        cd /home/ec2-user/dist
         pm2 list
         pm2 stop default
         pm2 start main.js
