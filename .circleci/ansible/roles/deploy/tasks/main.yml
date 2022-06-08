@@ -25,6 +25,13 @@
   #     dest: /home/ubuntu/
   #     owner: ubuntu 
   #     remote_src: no
+
+  - name: Extract artifact.tar.gz file to EC2 isntance
+    unarchive:
+      src: ../../backend/artefacts.tar.gz
+      dest: /home/ubuntu
+      owner: ec2-user
+      remote_src: no
   
   - name: "install dependencies Nodejs NPM"
     become: yes
@@ -68,7 +75,7 @@
 
   - name: "Start Backend App"
     become: yes
-    become_user: ubuntu  
+    become_user: ec2-user  
     shell: |
         cd /home/ubuntu/dist
         pm2 list
