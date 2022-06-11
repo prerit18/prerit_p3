@@ -8,8 +8,8 @@
   - name: Extract artifact.tar.gz file to EC2 isntance
     unarchive:
       src: ../../backend/artefacts.tar.gz
-      dest: /home/ec2-user
-      owner: ec2-user
+      dest: /home/ubuntu
+      owner: ubuntu
       remote_src: no
 
   # - name: "Install zip"
@@ -51,7 +51,7 @@
   - name: "pm2 install global using NPM"
     become: yes
     shell: |
-      cd /home/ec2-user/
+      cd /home/ubuntu/
       npm install pm2 -g
 
 # lins removed
@@ -69,9 +69,9 @@
 
   - name: "Start Backend App"
     become: yes
-    become_user: ec2-user  
+    become_user: ubuntu 
     shell: |
-        cd /home/ec2-user/dist
+        cd /home/ubuntu/dist
         pm2 list
         pm2 stop default
         pm2 start main.js
